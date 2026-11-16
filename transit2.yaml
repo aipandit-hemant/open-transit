@@ -1,0 +1,41 @@
+# Run: .venv/bin/python -m domain.core.transit2
+# Dates are inclusive, in UTC. CLI arguments override these settings.
+start: 2009-01-01
+end: 2009-12-31
+limit: 10
+details: false
+
+dasha_levels: [MAHADASHA, ANTARDASHA]
+
+transit:
+  csv: infrastructure/data/transit_v3.csv # Run the generator before scanning
+  enabled: true # false = dasha alone; no transit calculations
+  dasha_levels: null # Use the requested MD/AD/PD lords; an explicit list overrides this
+  #planets: [SAT, JUP] # Additional actors
+  planets: [] # Additional actors
+  include_lagnesh: false
+  exclude_planets: [MON] # Applies even if Moon is a dasha lord or Lagnesh
+  track: [rashi, direction, combust] # Add nakshatra to track it too
+
+report:
+  output: /private/tmp/hemant-transit-report.html
+  # Editable natural karakas, following the existing Jyotish knowledge-base roles.
+  # Role lists do not imply an impact; see the report's flags and evidence counts.
+  house_karakas:
+    1: [SUN]
+    2: [JUP]
+    3: [MAR]
+    4: [MON, VEN, MAR, MER]
+    5: [JUP]
+    6: [MAR, SAT]
+    7: [VEN]
+    8: [SAT, KET]
+    9: [SUN, JUP]
+    10: [SUN, SAT, MER]
+    11: [JUP, MAR]
+    12: [SAT, KET]
+
+query:
+  houses: [] # Include all houses
+  match_all: false
+  min_score: 0
